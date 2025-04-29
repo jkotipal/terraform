@@ -49,3 +49,36 @@ To destroy resources:
 terraform destroy
 
 
+Terraform Project Structure Using Shared Backend
+
+terraform-project/
+├── terraform-backend-setup/           # One-time setup for S3 + DynamoDB
+│   └── main.tf
+│
+├── ec2-instance-project/              # First EC2 module project
+│   ├── backend.tf                     # Remote backend config
+│   ├── main.tf                        # Uses EC2 module
+│   ├── variables.tf
+│   ├── terraform.tfvars
+│   ├── outputs.tf
+│   └── modules/
+│       └── ec2_instance/
+│           ├── main.tf
+│           ├── variables.tf
+│           └── outputs.tf
+│
+├── ec2-instance-project-2/            # Second EC2 project using same backend
+│   ├── backend.tf                     # Same S3 bucket, different key
+│   ├── main.tf
+│   ├── variables.tf
+│   ├── terraform.tfvars
+│   ├── outputs.tf
+│   └── modules/
+│       └── ec2_instance/
+│           ├── main.tf
+│           ├── variables.tf
+│           └── outputs.tf
+
+
+
+

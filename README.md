@@ -5,8 +5,18 @@ This project demonstrates how to use **Terraform modules** to create and manage 
 ---
 
 ## Project Structure
+aws_terraform/
+├── main.tf                  # Root module: calls the EC2 module
+├── variables.tf             # Input variables for root
+├── terraform.tfvars         # Variable values
+├── outputs.tf               # Exposes module outputs
+├── backend.tf               # (Optional) S3 backend + DynamoDB lock config
+└── modules/
+    └── ec2_instance/
+        ├── main.tf          # EC2 instance resource definition
+        ├── variables.tf     # Inputs for EC2 module
+        └── outputs.tf       # Outputs from EC2 module
 
-aws_terraform/ ├── main.tf # Root module: calls the EC2 module ├── variables.tf # Input variables for root ├── terraform.tfvars # Variable values ├── outputs.tf # Exposes module outputs └── modules/ └── ec2_instance/ ├── main.tf # EC2 instance resource definition ├── variables.tf # Inputs for EC2 module └── outputs.tf # Outputs from EC2 module
 
 ---
 
